@@ -1,6 +1,28 @@
-export type JobType = 'frontend' | 'backend' | 'qa' | 'designer';
-export type WorkType = 'remote' | 'hybrid' | 'onsite';
-export type Region = 'Europe' | 'USA' | 'NA' | 'SA' | 'Asia' | 'Worldwide';
+export const JobTypes = {
+  FRONTEND: 'frontend',
+  BACKEND: 'backend',
+  QA: 'qa',
+  DESIGNER: 'designer'
+} as const;
+
+export const WorkTypes = {
+  REMOTE: 'remote',
+  HYBRID: 'hybrid',
+  ONSITE: 'onsite'
+} as const;
+
+export const Regions = {
+  EUROPE: 'Europe',
+  USA: 'USA',
+  NA: 'NA',
+  SA: 'SA',
+  ASIA: 'Asia',
+  WORLDWIDE: 'Worldwide'
+} as const;
+
+export type JobType = typeof JobTypes[keyof typeof JobTypes];
+export type WorkType = typeof WorkTypes[keyof typeof WorkTypes];
+export type Region = typeof Regions[keyof typeof Regions];
 
 interface SearchParams {
   jobType: JobType;
@@ -64,6 +86,12 @@ export const buildSearchQuery = (params: SearchParams): string => {
 export const searchJobs = (params: SearchParams): Promise<void> => {
   return new Promise((resolve, reject) => {
     try {
+      // Validate input parameters
+      if (!Object.values(JobTypes).includes(params.jobType) ||
+          !Object.values(WorkTypes).includes(params.workType) ||
+          !Object.values(Regions).includes(params.region)) {
+        throw new Error('Invalid parameters');
+      }
       const query = buildSearchQuery(params);
       const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
       const newWindow = window.open(searchUrl, '_blank');

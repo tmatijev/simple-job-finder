@@ -1,5 +1,8 @@
 {
   "manifest_version": 3,
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
   "name": "Simple Job Finder",
   "version": "1.0.0",
   "description": "Quickly search for tech jobs across multiple job boards with filters for remote work, location, and salary information",

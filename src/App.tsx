@@ -1,12 +1,12 @@
 import React, { useState, ChangeEvent } from 'react';
 import JobTypeSelector from './components/JobTypeSelector';
 import { searchJobs } from './utils/searchQueryBuilder';
-import type { JobType, WorkType, Region } from './utils/searchQueryBuilder';
+import { JobTypes, WorkTypes, Regions, type JobType, type WorkType, type Region } from './utils/searchQueryBuilder';
 
 const App: React.FC = () => {
-  const [jobType, setJobType] = useState<JobType>('frontend');
-  const [workType, setWorkType] = useState<WorkType>('remote');
-  const [region, setRegion] = useState<Region>('Worldwide');
+  const [jobType, setJobType] = useState<JobType>(JobTypes.FRONTEND);
+  const [workType, setWorkType] = useState<WorkType>(WorkTypes.REMOTE);
+  const [region, setRegion] = useState<Region>(Regions.WORLDWIDE);
   const [requireSalary, setRequireSalary] = useState<boolean>(false);
   const [isSearching, setIsSearching] = useState<boolean>(false);
 
