@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Simple Job Finder",
   "version": "1.0.0",
-  "description": "Search for remote tech jobs across multiple job boards",
+  "description": "Quickly search for tech jobs across multiple job boards with filters for remote work, location, and salary information",
   "action": {
     "default_popup": "index.html",
     "default_icon": {
